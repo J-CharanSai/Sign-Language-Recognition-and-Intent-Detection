@@ -1,0 +1,4 @@
+Sign language Mnist dataset : https://www.kaggle.com/datasets/datamunge/sign-language-mnist
+
+Sign language recognition dataset :
+https://paperswithcode.com/task/sign-language-recognition/latest#datasets
