@@ -17,16 +17,16 @@ from datetime import datetime
 
 
 app = Flask(__name__, static_folder='static')
-model = keras.models.load_model('Signmodel.h5')
+model = keras.models.load_model('API\\Signmodel.h5')
 # Load the pre-trained ResNet50 model
 model1 = ResNet50(weights='imagenet', include_top=False, pooling='avg')
 Message = " 12"
 
 
 def compare_images():
-    img_path = "C:\\Users\\charan sai\\Documents\\semesters\\Sem - 8\\NLP\\PostMidSem\\Sign-Language-Recognition-and-Intent-Detection\\API\\Images\\temp_sign.png"
-    image2_path = "C:\\Users\\charan sai\\Documents\\semesters\\Sem - 8\\NLP\\PostMidSem\\Sign-Language-Recognition-and-Intent-Detection\\API\\Images\\Right_hand.jpg"
-    image1_path = "C:\\Users\\charan sai\\Documents\\semesters\\Sem - 8\\NLP\\PostMidSem\\Sign-Language-Recognition-and-Intent-Detection\\API\\Images\\left_hand.jpg"
+    img_path = "API\\Images\\temp_sign.png"
+    image2_path = "API\\Images\\Right_hand.jpg"
+    image1_path = "API\\Images\\left_hand.jpg"
     # Load the two input images
     img1 = image.load_img(img_path, target_size=(224, 224))
     img2r = image.load_img(image2_path, target_size=(224, 224))
@@ -82,10 +82,10 @@ def fetch_img(S):
 
 
 def generate_video(S):
-    image_folder = 'C:\\Users\\charan sai\\Documents\\semesters\\Sem - 8\\NLP\\PostMidSem\\Sign-Language-Recognition-and-Intent-Detection\\API\\Images' 
-    video_name = "C:\\Users\\charan sai\\Documents\\semesters\\Sem - 8\\NLP\\PostMidSem\\Sign-Language-Recognition-and-Intent-Detection\\API\\static\\ChToSign.mp4"
+    image_folder = 'API\\Images' 
+    video_name = "API\\static\\ChToSign.mp4"
     images = fetch_img(S)
-    # print(images)
+
     frame = cv2.imread(os.path.join(image_folder, images[0]))
     height, width, layers = frame.shape
 
@@ -148,7 +148,7 @@ def Hand_img_alphabet(img,i):
 
       # Crop the hand image
       img = img[top[1]:wrist[1], left[0]:right[0]]
-  cv2.imwrite("C:\\Users\\charan sai\\Documents\\semesters\\Sem - 8\\NLP\\PostMidSem\\Sign-Language-Recognition-and-Intent-Detection\\API\\Images\\temp_sign.png", img)
+  cv2.imwrite("API\\Images\\temp_sign.png", img)
   if compare_images() == 1:
         return " "
   gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -218,7 +218,7 @@ def capture():
 
     # generate a unique filename and save the image
     filename = 'image.jpg'
-    cv2.imwrite("C:\\Users\\charan sai\\Documents\\semesters\\Sem - 8\\NLP\\PostMidSem\\Sign-Language-Recognition-and-Intent-Detection\\API\\static\\"+filename, image)
+    cv2.imwrite("static\\"+filename, image)
 
     # redirect to a page that displays the captured image
     return redirect(url_for('show_image', filename=filename))
