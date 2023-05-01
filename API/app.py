@@ -20,7 +20,7 @@ app = Flask(__name__, static_folder='static')
 model = keras.models.load_model('API\\Signmodel.h5')
 # Load the pre-trained ResNet50 model
 model1 = ResNet50(weights='imagenet', include_top=False, pooling='avg')
-Message = " 12"
+Message = " "
 
 
 def compare_images():
